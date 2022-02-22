@@ -1,5 +1,4 @@
 import styled from "styled-components";
-<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../../api/fetchProducts";
 import { useSelector } from "react-redux";
@@ -37,35 +36,16 @@ const ProductItems = () => {
       <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
     </ProductsWrapper>
   );
-=======
-import { useEffect } from "react";
-import { fetchProducts } from "../../api/fetchProducts";
-import { useSelector } from "react-redux";
-
-const ProductItems = () => {
-  const { brands, sort, type, tags } = useSelector((state) => state.filters);
-
-  useEffect(() => {
-    fetchProducts(brands, type, sort, tags);
-  }, [brands, tags]);
-
-  return <ProductsWrapper></ProductsWrapper>;
->>>>>>> efa1fb195ca6e98c19dfbb1afdc054fbf29950e5
 };
 
 export default ProductItems;
 
 const ProductsWrapper = styled.div`
   width: 100%;
-<<<<<<< HEAD
   background-color: white;
   padding: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-=======
-  height: 2rem;
-  background-color: white;
->>>>>>> efa1fb195ca6e98c19dfbb1afdc054fbf29950e5
 `;
