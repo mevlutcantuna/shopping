@@ -2,21 +2,39 @@ import FilterTitle from "../filter-title";
 import styled from "styled-components";
 
 import CheckIcon from "../../icons/CheckIcon";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSorting } from "../../store/actions/filters";
 
 const Sorting = () => {
-  const [sortValue, setSortValue] = useState("Price low to high");
-
-  const sortFilterItems = [
-    "Price high to low",
-    "Price low to high",
-    "New to old",
-    "Old to low",
-  ];
+  const sortValue = useSelector((state) => state.filters.sort);
+  const dispatch = useDispatch();
 
   const handleChangeRadio = (value) => {
-    setSortValue(value);
+    dispatch(changeSorting(value));
   };
+
+  const sortFilterItems = [
+    {
+      title: "Price high to low",
+      type: "price",
+      order: "desc",
+    },
+    {
+      title: "Price low to high",
+      type: "price",
+      order: "asc",
+    },
+    {
+      title: "New to old",
+      type: "added",
+      order: "desc",
+    },
+    {
+      title: "Old to low",
+      type: "added",
+      order: "asc",
+    },
+  ];
 
   return (
     <SortingWrapper>
@@ -29,7 +47,7 @@ const Sorting = () => {
               type="radio"
               checked={item === sortValue}
             />
-            {item}
+            {item.title}
             <SortingCheckIcon item={item} sortValue={sortValue}>
               <CheckIcon color="#1CA4CE" />
             </SortingCheckIcon>
@@ -67,10 +85,12 @@ const SortingInput = styled.input`
   border: 1.5px solid ${(p) => p.theme.colors.primaryBlue};
   border-radius: 100%;
   margin-right: 1rem;
+  cursor: pointer;
 `;
 
 const SortingCheckIcon = styled.span`
-  display: ${({ item, sortValue }) => (item === sortValue ? "" : "none")};
+  display: ${({ item, sortValue }) =>
+    item.title === sortValue.title ? "" : "none"};
   position: absolute;
   left: 3px;
   top: 3px;

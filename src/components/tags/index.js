@@ -6,17 +6,21 @@ import { fetchTags } from "../../api/fetchTags";
 
 import FilterCheckboxItem from "../filter-checkbox-item";
 import FilterLoader from "../loaders/FilterLoader";
+import { useDispatch, useSelector } from "react-redux";
+import { changeTags } from "../../store/actions/filters";
 
 const Tags = () => {
   const [tags, setTags] = useState();
   const [searchValue, setSearchValue] = useState("");
-  const [searchedTags, setSearchedTags] = useState([]);
   const [loading, setLoading] = useState(true);
+  const searchedTags = useSelector((state) => state.filters.tags);
+  const dispatch = useDispatch();
 
   const handleChangeSearchValue = (e) => {
     setSearchValue(e.target.value);
   };
 
+  // get all tags
   const getTags = async () => {
     const tags = await fetchTags();
     if (searchValue.trim() === "") {
@@ -32,22 +36,23 @@ const Tags = () => {
     }
   };
 
+  // add or remove brands according to some conditions
   const handleChangeSearchedTags = (value) => {
     if (searchedTags.includes(value)) {
       const removedSearchedTags = searchedTags.filter((item) => item !== value);
       if (removedSearchedTags.length === 0) {
-        return setSearchedTags(["All"]);
+        return dispatch(changeTags(["All"]));
       }
-      return setSearchedTags(removedSearchedTags);
+      return dispatch(changeTags(removedSearchedTags));
     } else {
       if (value === "All") {
-        return setSearchedTags(["All"]);
+        return dispatch(changeTags(["All"]));
       }
       const addedSearchedBrands = [...searchedTags, value];
       const removeFromAllAddedSearchedBrands = addedSearchedBrands.filter(
         (item) => item !== "All"
       );
-      return setSearchedTags(removeFromAllAddedSearchedBrands);
+      return dispatch(changeTags(removeFromAllAddedSearchedBrands));
     }
   };
 
