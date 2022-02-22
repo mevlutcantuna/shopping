@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import ProductItem from "./ProductItem";
 import Pagination from "../pagination";
 
+// changed
+
 const ProductItems = () => {
   const { brands, sort, type, tags } = useSelector((state) => state.filters);
   const [page, setPage] = useState(1);
