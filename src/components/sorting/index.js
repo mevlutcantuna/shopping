@@ -8,6 +8,7 @@ import { changeSorting } from "../../store/actions/filters";
 const Sorting = () => {
   const sortValue = useSelector((state) => state.filters.sort);
   const dispatch = useDispatch();
+<<<<<<< HEAD
 
   const handleChangeRadio = (value) => {
     dispatch(changeSorting(value));
@@ -36,6 +37,20 @@ const Sorting = () => {
     },
   ];
 
+=======
+
+  const handleChangeRadio = (value) => {
+    dispatch(changeSorting(value));
+  };
+
+  const sortFilterItems = [
+    "Price high to low",
+    "Price low to high",
+    "New to old",
+    "Old to low",
+  ];
+
+>>>>>>> efa1fb195ca6e98c19dfbb1afdc054fbf29950e5
   return (
     <SortingWrapper>
       <FilterTitle title="Sorting" />

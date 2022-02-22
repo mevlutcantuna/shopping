@@ -1,4 +1,5 @@
 import styled from "styled-components";
+<<<<<<< HEAD
 import ProductButton from "./ProductButton";
 
 const ProductItem = ({ item, index }) => {
@@ -45,3 +46,12 @@ const ProductItemTitle = styled.h4`
   font-size: 14px;
   height: 32px;
 `;
+=======
+
+const ProductItem = () => {
+  return <ProductItemContainer>ds</ProductItemContainer>;
+};
+export default ProductItem;
+
+const ProductItemContainer = styled.div``;
+>>>>>>> efa1fb195ca6e98c19dfbb1afdc054fbf29950e5

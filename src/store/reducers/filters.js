@@ -6,6 +6,7 @@ import {
 } from "../constants/filters";
 
 const initialState = {
+<<<<<<< HEAD
   sort: {
     title: "Price high to low",
     type: "price",
@@ -14,6 +15,12 @@ const initialState = {
   brands: ["All"],
   tags: ["All"],
   type: "mug",
+=======
+  sort: "Price high to low",
+  brands: ["All"],
+  tags: ["All"],
+  type: "Mug",
+>>>>>>> efa1fb195ca6e98c19dfbb1afdc054fbf29950e5
 };
 
 const FiltersReducer = (state = initialState, action) => {

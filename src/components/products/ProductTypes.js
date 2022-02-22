@@ -14,15 +14,25 @@ const ProductTypes = () => {
     <ProductTypesWrapper>
       <ProductTypesButton
         type={type}
+<<<<<<< HEAD
         value={"mug"}
         onClick={() => handleChangeType("mug")}
+=======
+        value={"Mug"}
+        onClick={() => handleChangeType("Mug")}
+>>>>>>> efa1fb195ca6e98c19dfbb1afdc054fbf29950e5
       >
         mug
       </ProductTypesButton>
       <ProductTypesButton
         type={type}
+<<<<<<< HEAD
         value={"shirt"}
         onClick={() => handleChangeType("shirt")}
+=======
+        value={"Shirt"}
+        onClick={() => handleChangeType("Shirt")}
+>>>>>>> efa1fb195ca6e98c19dfbb1afdc054fbf29950e5
       >
         shirt
       </ProductTypesButton>
