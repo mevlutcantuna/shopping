@@ -3,23 +3,33 @@ import { useEffect, useState } from "react";
 import { fetchBrands } from "../../api/fetchBrands";
 import SearchInput from "../search-input";
 import FilterTitle from "../filter-title";
-import CheckIcon from "../../icons/CheckIcon";
+import FilterLoader from "../loaders/FilterLoader";
+import FilterCheckboxItem from "../filter-checkbox-item";
 
 const Brands = () => {
   const [brands, setBrands] = useState();
   const [searchedBrands, setSearchedBrands] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [loading, setLoading] = useState(true);
 
+  const handleChangeInputValue = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  // get all brands
   const getBrands = async () => {
     const brands = await fetchBrands();
+
     if (searchValue.trim() === "") {
       const brandsData = ["All", ...brands?.data];
-      return setBrands(brandsData);
+      setBrands(brandsData);
+      setLoading(false);
     } else {
       const filteredBrands = brands.data.filter((item) =>
         item.toLowerCase().includes(searchValue.toLowerCase())
       );
-      return setBrands(filteredBrands);
+      setBrands(filteredBrands);
+      setLoading(false);
     }
   };
 
@@ -45,15 +55,12 @@ const Brands = () => {
     }
   };
 
-  const handleChangeInputValue = (e) => {
-    setSearchValue(e.target.value);
-  };
-
   useEffect(() => {
     getBrands();
   }, [searchValue]);
 
   useEffect(() => {
+    // when page upload,choose all brands
     handleChangeSearchedBrands("All");
   }, []);
 
@@ -66,24 +73,20 @@ const Brands = () => {
           onChange={handleChangeInputValue}
           placeholder={"Search brands"}
         />
-        <BrandsSearchItems>
-          {brands?.map((item, index) => (
-            <BrandsSearchLabel key={index}>
-              <BrandsSearchCheckBox
-                onChange={() => handleChangeSearchedBrands(item)}
-                type="checkbox"
-                checked={!searchedBrands?.includes(item) ? false : true}
-              />
-              <BrandsSearchText>{item}</BrandsSearchText>
-              <BrandsSearchCheckIcon
+        {!loading ? (
+          <BrandsSearchItems>
+            {brands?.map((item, index) => (
+              <FilterCheckboxItem
+                key={index}
                 item={item}
-                searchedBrands={searchedBrands}
-              >
-                <CheckIcon color="#fff" />
-              </BrandsSearchCheckIcon>
-            </BrandsSearchLabel>
-          ))}
-        </BrandsSearchItems>
+                handleChange={handleChangeSearchedBrands}
+                searchItems={searchedBrands}
+              />
+            ))}
+          </BrandsSearchItems>
+        ) : (
+          <FilterLoader />
+        )}
       </BrandsContainer>
     </BrandsWrapper>
   );
@@ -111,36 +114,4 @@ const BrandsSearchItems = styled.div`
   padding: 1rem;
   height: 200px;
   overflow: scroll;
-`;
-
-const BrandsSearchLabel = styled.label`
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  color: ${(p) => p.theme.colors.gray700};
-  position: relative;
-`;
-
-const BrandsSearchCheckBox = styled.input`
-  appearance: none;
-  width: 22px;
-  min-width: 22px;
-  height: 22px;
-  min-height: 22px;
-  box-shadow: rgb(93 56 192 / 40%) 0 1px 7px 0;
-
-  &:checked {
-    background-color: ${(p) => p.theme.colors.primaryBlue};
-  }
-`;
-
-const BrandsSearchCheckIcon = styled.div`
-  position: absolute;
-  left: 3px;
-  display: ${({ item, searchedBrands }) =>
-    searchedBrands.includes(item) ? "" : "none"};
-`;
-
-const BrandsSearchText = styled.div`
-  margin: 0 1rem;
 `;
