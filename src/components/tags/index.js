@@ -4,7 +4,6 @@ import FilterTitle from "../filter-title";
 import { useEffect, useState } from "react";
 import { fetchTags } from "../../api/fetchTags";
 
-import { useSearchedItem } from "../../hooks/useSearchedItem";
 import FilterCheckboxItem from "../filter-checkbox-item";
 import FilterLoader from "../loaders/FilterLoader";
 
