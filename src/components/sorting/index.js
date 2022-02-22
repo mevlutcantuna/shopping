@@ -2,10 +2,16 @@ import FilterTitle from "../filter-title";
 import styled from "styled-components";
 
 import CheckIcon from "../../icons/CheckIcon";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSorting } from "../../store/actions/filters";
 
 const Sorting = () => {
-  const [sortValue, setSortValue] = useState("Price low to high");
+  const sortValue = useSelector((state) => state.filters.sort);
+  const dispatch = useDispatch();
+
+  const handleChangeRadio = (value) => {
+    dispatch(changeSorting(value));
+  };
 
   const sortFilterItems = [
     "Price high to low",
@@ -13,10 +19,6 @@ const Sorting = () => {
     "New to old",
     "Old to low",
   ];
-
-  const handleChangeRadio = (value) => {
-    setSortValue(value);
-  };
 
   return (
     <SortingWrapper>
@@ -67,6 +69,7 @@ const SortingInput = styled.input`
   border: 1.5px solid ${(p) => p.theme.colors.primaryBlue};
   border-radius: 100%;
   margin-right: 1rem;
+  cursor: pointer;
 `;
 
 const SortingCheckIcon = styled.span`

@@ -5,12 +5,15 @@ import SearchInput from "../search-input";
 import FilterTitle from "../filter-title";
 import FilterLoader from "../loaders/FilterLoader";
 import FilterCheckboxItem from "../filter-checkbox-item";
+import { useDispatch, useSelector } from "react-redux";
+import { changeBrands } from "../../store/actions/filters";
 
 const Brands = () => {
   const [brands, setBrands] = useState();
-  const [searchedBrands, setSearchedBrands] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(true);
+  const searchedBrands = useSelector((state) => state.filters.brands);
+  const dispatch = useDispatch();
 
   const handleChangeInputValue = (e) => {
     setSearchValue(e.target.value);
@@ -40,18 +43,18 @@ const Brands = () => {
         (item) => item !== value
       );
       if (removedSearchedBrands.length === 0) {
-        return setSearchedBrands(["All"]);
+        return dispatch(changeBrands(["All"]));
       }
-      return setSearchedBrands(removedSearchedBrands);
+      return dispatch(changeBrands(removedSearchedBrands));
     } else {
       if (value === "All") {
-        return setSearchedBrands(["All"]);
+        return dispatch(changeBrands(["All"]));
       }
       const addedSearchedBrands = [...searchedBrands, value];
       const removeFromAllAddedSearchedBrands = addedSearchedBrands.filter(
         (item) => item !== "All"
       );
-      return setSearchedBrands(removeFromAllAddedSearchedBrands);
+      return dispatch(changeBrands(removeFromAllAddedSearchedBrands));
     }
   };
 
