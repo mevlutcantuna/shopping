@@ -14,11 +14,7 @@ const Products = () => {
 
 export default Products;
 
-const ProductsWrapper = styled.div`
-  grid-column-start: 2;
-  grid-column-end: 7;
-  grid-row-start: 1;
-`;
+const ProductsWrapper = styled.div``;
 
 const ProductTitle = styled.h3`
   font-size: 20px;

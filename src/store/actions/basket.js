@@ -11,16 +11,16 @@ export const addToBasket = (item) => {
   };
 };
 
-export const removeFromBasket = (slug) => {
+export const removeFromBasket = (item) => {
   return {
     type: REMOVE_FROM_BASKET,
-    payload: slug,
+    payload: item,
   };
 };
 
-export const changeProductAddedQuantity = (slug, quantity) => {
+export const changeProductAddedQuantity = (product, value) => {
   return {
     type: CHANGE_PRODUCT_ADDED_QUANTITY,
-    payload: { slug, quantity },
+    payload: { product, value },
   };
 };

@@ -12,8 +12,8 @@ const ProductItem = ({ item, index }) => {
     dispatch(addToBasket(itemWithQuantity));
   };
 
-  const removeProduct = (slug) => {
-    dispatch(removeFromBasket(slug));
+  const removeProduct = (item) => {
+    dispatch(removeFromBasket(item));
   };
 
   return (
@@ -25,10 +25,7 @@ const ProductItem = ({ item, index }) => {
       <ProductItemPrice>₺ {item?.price}</ProductItemPrice>
       <ProductItemTitle>{item?.name}</ProductItemTitle>
       {useIsInBasket(item) ? (
-        <ProductButton
-          title={"Remove"}
-          onClick={() => removeProduct(item?.slug)}
-        />
+        <ProductButton title={"Remove"} onClick={() => removeProduct(item)} />
       ) : (
         <ProductButton title={"Add"} onClick={addProduct} />
       )}

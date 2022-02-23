@@ -5,15 +5,14 @@ import { useSelector } from "react-redux";
 import ProductItem from "./ProductItem";
 import Pagination from "../pagination";
 
-import ProductLoader from "../loaders/ProductLoader";
 import AllProductsLoaders from "../loaders/AllProductsLoaders";
 
 const ProductItems = () => {
-  const { brands, sort, type, tags } = useSelector((state) => state.filters);
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [loading, setLoading] = useState(true);
+  const { brands, sort, type, tags } = useSelector((state) => state.filters);
 
   const handlePageClick = (value) => {
     setPage(value.selected + 1);
@@ -24,7 +23,7 @@ const ProductItems = () => {
     setProducts(productsData);
 
     // get total product count
-    let totalProductCount = Number(productsData.headers["x-total-count"]);
+    let totalProductCount = Number(productsData?.headers["x-total-count"]);
     setPageCount(Math.ceil(totalProductCount / 16));
 
     setLoading(false);

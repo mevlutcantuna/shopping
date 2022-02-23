@@ -25,7 +25,7 @@ const HeaderWrapper = styled.div`
 
 const HeaderContainer = styled.div`
   width: 100%;
-  max-width: 1156px;
+  max-width: 1232px;
   height: 100%;
   display: flex;
   align-items: center;

@@ -1,11 +1,14 @@
 import BasketIcon from "../../icons/BasketIcon";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const BasketButton = () => {
+  const totalPrice = useSelector((state) => state.basket.totalPrice);
+
   return (
     <BasketButtonWrapper>
       <BasketIcon />
-      <BasketPrice>₺ 22.98</BasketPrice>
+      <BasketPrice>₺ {parseFloat(totalPrice).toFixed(2)}</BasketPrice>
     </BasketButtonWrapper>
   );
 };

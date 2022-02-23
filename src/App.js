@@ -16,8 +16,12 @@ const App = () => {
           <Brands />
           <Tags />
         </AppFilters>
-        <Products />
-        <Basket />
+        <AppProduct>
+          <Products />
+        </AppProduct>
+        <AppBasket>
+          <Basket />
+        </AppBasket>
       </AppContainer>
     </AppWrapper>
   );
@@ -31,15 +35,28 @@ const AppWrapper = styled.div`
 `;
 
 const AppContainer = styled.div`
-  max-width: 1156px;
+  max-width: 1232px;
   margin: 2rem auto;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
   gap: 16px;
 `;
 
 const AppFilters = styled.div`
-  max-width: 300px;
   min-width: 250px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+`;
+
+const AppProduct = styled.div`
+  grid-column-start: 4;
+  grid-column-end: 10;
+  grid-row-start: 1;
+`;
+
+const AppBasket = styled.div`
+  grid-column-start: 10;
+  grid-column-end: 13;
+  grid-row-start: 1;
 `;
