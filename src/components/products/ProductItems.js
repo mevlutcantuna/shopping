@@ -5,13 +5,15 @@ import { useSelector } from "react-redux";
 import ProductItem from "./ProductItem";
 import Pagination from "../pagination";
 
-// changed
+import ProductLoader from "../loaders/ProductLoader";
+import AllProductsLoaders from "../loaders/AllProductsLoaders";
 
 const ProductItems = () => {
   const { brands, sort, type, tags } = useSelector((state) => state.filters);
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
-  const [pageCount, setPageCount] = useState(2);
+  const [pageCount, setPageCount] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   const handlePageClick = (value) => {
     setPage(value.selected + 1);
@@ -24,6 +26,8 @@ const ProductItems = () => {
     // get total product count
     let totalProductCount = Number(productsData.headers["x-total-count"]);
     setPageCount(Math.ceil(totalProductCount / 16));
+
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -32,10 +36,21 @@ const ProductItems = () => {
 
   return (
     <ProductsWrapper>
-      {products?.data?.map((item, index) => (
-        <ProductItem item={item} key={index} index={index} />
-      ))}
-      <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
+      {loading ? (
+        <>
+          <AllProductsLoaders />
+        </>
+      ) : (
+        <>
+          {products?.data?.map((item) => (
+            <ProductItem item={item} key={item?.name} index={item?.slug} />
+          ))}
+        </>
+      )}
+
+      <ProductPagination pageCount={pageCount}>
+        <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
+      </ProductPagination>
     </ProductsWrapper>
   );
 };
@@ -49,5 +64,10 @@ const ProductsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+`;
+
+const ProductPagination = styled.div`
+  width: 100%;
+  display: ${({ pageCount }) => (pageCount > 1 ? "flex" : "none")};
+  justify-content: center;
 `;
