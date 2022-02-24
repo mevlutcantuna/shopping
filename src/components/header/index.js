@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import Logo from "../../icons/Logo";
 import BasketButton from "./BasketButton";
+import MenuIcon from "../../icons/MenuIcon";
 
-const Header = () => {
+const Header = ({ changeIsOpen }) => {
   return (
     <HeaderWrapper>
       <HeaderContainer>
+        <HeaderMenuIcon onClick={() => changeIsOpen(true)}>
+          <MenuIcon cursor="pointer" fill="#ffffff" />
+        </HeaderMenuIcon>
         <HeaderLogo>
           <Logo />
         </HeaderLogo>
@@ -30,6 +34,14 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   margin: auto;
+
+  @media (max-width: ${(p) => p.theme.breakpoints.lg}) {
+    margin: 0 0 0 10%;
+  }
+
+  @media (max-width: ${(p) => p.theme.breakpoints.m}) {
+    margin: 0 0 0 5%;
+  }
 `;
 
 const HeaderLogo = styled.div`
@@ -37,4 +49,12 @@ const HeaderLogo = styled.div`
   max-width: 1156px;
   display: flex;
   justify-content: center;
+`;
+
+const HeaderMenuIcon = styled.button`
+  display: none;
+  background-color: transparent;
+  @media (max-width: ${(p) => p.theme.breakpoints.lg}) {
+    display: flex;
+  }
 `;

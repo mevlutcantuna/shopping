@@ -62,7 +62,7 @@ const ProductsWrapper = styled.div`
   padding: 1rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const ProductPagination = styled.div`

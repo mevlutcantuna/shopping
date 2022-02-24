@@ -8,5 +8,10 @@ export const theme = {
     gray500: "rgb(168, 168, 168)",
     gray700: "rgb(25, 25, 25)",
   },
-  breakpoints: {},
+  breakpoints: {
+    xl: "1440px",
+    lg: "1240px",
+    m: "768px",
+    sm: "360px",
+  },
 };

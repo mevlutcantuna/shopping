@@ -10,17 +10,17 @@ const Pagination = ({ pageCount, handlePageClick }) => {
         breakLabel="..."
         nextLabel={
           <>
-            Next
+            <StyledPaginateText>Next</StyledPaginateText>
             <RightIcon />
           </>
         }
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={3}
         pageCount={pageCount}
         previousLabel={
           <>
             <LeftIcon />
-            Previous
+            <StyledPaginateText>Previous</StyledPaginateText>
           </>
         }
         renderOnZeroPageCount={null}
@@ -70,5 +70,13 @@ const StyledReactPaginate = styled(ReactPaginate)`
       opacity: 0.4;
       pointer-events: none;
     }
+  }
+`;
+
+const StyledPaginateText = styled.span`
+  display: flex;
+
+  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
+    display: none;
   }
 `;
