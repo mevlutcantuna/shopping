@@ -125,10 +125,3 @@ const AppSliderSidebar = styled.div`
 const StyledMotion = styled(motion.div)`
   background-color: red;
 `;
-
-const StyledShadowMotion = styled.div`
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
-`;
