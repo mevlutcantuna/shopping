@@ -4,6 +4,7 @@ In this project, I tried to make a simple shopping website.
 
 I got all data from https://getir-locals-api.herokuapp.com
 
+Demo : https://shopping-mevlutcantuna.netlify.app/
 
 Features
 -
