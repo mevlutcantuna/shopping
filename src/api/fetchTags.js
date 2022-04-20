@@ -1,5 +1,5 @@
-import axios from "axios";
+import { instance } from "./instance";
 
 export const fetchTags = async () => {
-  return await axios.get(`${process.env.REACT_APP_API_URL}/tags`);
+  return await instance.get("/tags");
 };

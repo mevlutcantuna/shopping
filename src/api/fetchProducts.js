@@ -1,4 +1,4 @@
-import axios from "axios";
+import { instance } from "./instance";
 
 export const fetchProducts = async (brands, type, sort, tags, page) => {
   const queryStr = new URLSearchParams();
@@ -16,7 +16,5 @@ export const fetchProducts = async (brands, type, sort, tags, page) => {
   queryStr.append("_sort", sort?.type);
   queryStr.append("_order", sort?.order);
 
-  return await axios.get(
-    `${process.env.REACT_APP_API_URL}/products?_limit=16&` + queryStr.toString()
-  );
+  return await instance.get("/products?_limit=16&" + queryStr.toString());
 };
