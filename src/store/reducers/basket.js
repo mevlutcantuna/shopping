@@ -3,7 +3,6 @@ import {
   CHANGE_PRODUCT_ADDED_QUANTITY,
   REMOVE_FROM_BASKET,
 } from "../constants/basket";
-import totalPrice from "../../components/basket/TotalPrice";
 
 const initialState = {
   totalPrice: 0,

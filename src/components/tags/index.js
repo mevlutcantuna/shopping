@@ -58,10 +58,12 @@ const Tags = () => {
 
   useEffect(() => {
     getTags();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
   useEffect(() => {
     handleChangeSearchedTags("All");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -57,14 +57,15 @@ const Brands = () => {
       return dispatch(changeBrands(removeFromAllAddedSearchedBrands));
     }
   };
-
   useEffect(() => {
     getBrands();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
   useEffect(() => {
     // when page upload,choose all brands
     handleChangeSearchedBrands("All");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

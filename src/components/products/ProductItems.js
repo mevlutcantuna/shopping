@@ -31,6 +31,7 @@ const ProductItems = () => {
 
   useEffect(() => {
     getProducts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [brands, tags, sort, type, page]);
 
   return (
